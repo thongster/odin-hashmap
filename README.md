@@ -1,7 +1,8 @@
 # odin-hashmap
+
 Project: HashMap from The Odin Project's Javascript Course
 
-A project in which we learned about hash maps and are creating our own hash map with the corresponding methods. 
+A project in which we learned about hash maps and are creating our own hash map with the corresponding methods.
 
 The requirements are as follows:
 
@@ -18,7 +19,7 @@ The requirements are as follows:
     }
 
     return hashCode;
-    } 
+    }
     You are free to use that, or you can conduct your own research on hashing algorithms. Beware, this is a deep, deep rabbit hole.
 
     However, there is one edge case our hash function still needs to address. For very long keys, our hash code will exceed the maximum integer value allowed by JavaScript. Once that happens, calculations become inaccurate, and the chance of collisions significantly increases. One way to avoid this issue is to apply the modulo % operator on each iteration instead of outside the loop at the end.
