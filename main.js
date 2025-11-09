@@ -7,16 +7,19 @@ class HashMap {
 
   hash(key) {
     let hashCode = 0;
+    let index = 0;
 
     const primeNumber = 31;
     for (let i = 0; i < key.length; i++) {
       hashCode = primeNumber * hashCode + key.charCodeAt(i);
+      index = hashCode % this.capacity
     }
 
-    return hashCode;
+    return {hashCode, index};
   }
 }
 
 const test = new HashMap()
 console.log(test)
 console.log(test.buckets)
+console.log(test.hash("why"))
