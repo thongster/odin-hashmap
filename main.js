@@ -105,34 +105,47 @@ class HashMap {
     }
     return valuesArray;    
   }
+
+  entries() {
+    let entriesArray = []
+    for (let i = 0; i < this.buckets.length; i++) {
+      if (this.buckets[i] != undefined) {
+        entriesArray.push(this.buckets[i]);
+      }
+    }
+    return entriesArray;    
+  }
 }
 
-const test = new HashMap();
-test.set('apple', 'red');
-test.set('banana', 'yellow');
-test.set('carrot', 'orange');
-test.set('dog', 'brown'); //
-test.set('elephant', 'gray');
-test.set('frog', 'green');
-test.set('grape', 'purple'); //
-test.set('hat', 'black'); //
-test.set('ice cream', 'white');
-test.set('jacket', 'blue');
-test.set('kite', 'pink');
-test.set('lion', 'golden'); //
-console.log(test.get('apple'));
-console.log(test.get('ice cream'));
-console.log(test.get('alligator'));
-console.log(test.has('frog'));
-console.log(test.has('dog'));
-console.log(test.has('eagle'));
+// const test = new HashMap();
+// test.set('apple', 'red');
+// test.set('banana', 'yellow');
+// test.set('carrot', 'orange');
+// test.set('dog', 'brown'); //
+// test.set('elephant', 'gray');
+// test.set('frog', 'green');
+// test.set('grape', 'purple'); //
+// test.set('hat', 'black'); //
+// test.set('ice cream', 'white');
+// test.set('jacket', 'blue');
+// test.set('kite', 'pink');
+// test.set('lion', 'golden'); //
+// console.log(test.get('apple'));
+// console.log(test.get('ice cream'));
+// console.log(test.get('alligator'));
+// console.log(test.has('frog'));
+// console.log(test.has('dog'));
+// console.log(test.has('eagle'));
 // console.log(test.remove('frog'));
 // console.log(test.remove('jacket'));
 // console.log(test.remove('dog'));
 // console.log(test.remove('eagle'));
-console.log(test.length());
+// console.log(test.length());
 // console.log(test.clear())
-console.log(test.keys());
-console.log(test.values());
-console.log(test.buckets);
+// console.log(test.keys());
+// console.log(test.values());
+// console.log(test.entries());
+// console.log(test.buckets);
 // console.log(test.buckets)
+
+const test = new HashMap()
