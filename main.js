@@ -50,41 +50,51 @@ class HashMap {
   has(key) {
     // loop and return true when we find the key
     for (let i = 0; i < this.buckets.length; i++) {
-        if (this.buckets[i] != undefined && this.buckets[i][0] == key) {
-            return true
-        }
+      if (this.buckets[i] != undefined && this.buckets[i][0] == key) {
+        return true;
+      }
     }
-    return false
+    return false;
   }
 
   remove(key) {
     // loop through and turn the key we are looking for into undefined
     for (let i = 0; i < this.buckets.length; i++) {
-        if (this.buckets[i] != undefined && this.buckets[i][0] == key) {
-            this.buckets[i] = undefined
-            return true
-        }
+      if (this.buckets[i] != undefined && this.buckets[i][0] == key) {
+        this.buckets[i] = undefined;
+        return true;
+      }
     }
-    return false
+    return false;
   }
 
   length() {
     // loop through and increase count if the hash exists
     let count = 0;
     for (let i = 0; i < this.buckets.length; i++) {
-        if (this.buckets[i] != undefined) {
-            count++
-        }
+      if (this.buckets[i] != undefined) {
+        count++;
+      }
     }
-    return count
+    return count;
   }
 
   clear() {
     // turn all into undefined
     for (let i = 0; i < this.buckets.length; i++) {
-            this.buckets[i] = undefined
-        }
-    }    
+      this.buckets[i] = undefined;
+    }
+  }
+
+  keys() {
+    let keysArray = [];
+    for (let i = 0; i < this.buckets.length; i++) {
+      if (this.buckets[i] != undefined) {
+        keysArray.push(this.buckets[i][0]);
+      }
+    }
+    return keysArray;
+  }
 }
 
 const test = new HashMap();
@@ -110,7 +120,8 @@ console.log(test.has('eagle'));
 // console.log(test.remove('jacket'));
 // console.log(test.remove('dog'));
 // console.log(test.remove('eagle'));
-console.log(test.length())
+console.log(test.length());
 // console.log(test.clear())
-console.log(test.buckets)
+console.log(test.keys());
+console.log(test.buckets);
 // console.log(test.buckets)
