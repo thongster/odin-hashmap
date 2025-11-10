@@ -36,12 +36,25 @@ class HashMap {
   }
 
   get(key) {
+    // loop through this,buckets
+    // if the hash exists and the key is the same, return value
     for (let i = 0; i < this.buckets.length; i++) {
       if (this.buckets[i] != undefined && this.buckets[i][0] == key) {
         return this.buckets[i][1];
       }
     }
+    // else return null
     return null;
+  }
+
+  has(key) {
+    for (let i = 0; i < this.buckets.length; i++) {
+        if (this.buckets[i] != undefined && this.buckets[i][0] == key) {
+            return true
+        }
+    }
+
+    return false
   }
 }
 
@@ -61,5 +74,7 @@ test.set('lion', 'golden'); //
 console.log(test.get('apple'));
 console.log(test.get('ice cream'));
 console.log(test.get('alligator'));
-
+console.log(test.has('frog'));
+console.log(test.has('dog'));
+console.log(test.has('eagle'));
 // console.log(test.buckets)
