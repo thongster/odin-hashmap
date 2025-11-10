@@ -53,8 +53,27 @@ class HashMap {
             return true
         }
     }
-
     return false
+  }
+
+  remove(key) {
+    for (let i = 0; i < this.buckets.length; i++) {
+        if (this.buckets[i] != undefined && this.buckets[i][0] == key) {
+            this.buckets[i] = undefined
+            return true
+        }
+    }
+    return false
+  }
+
+  length() {
+    let count = 0;
+    for (let i = 0; i < this.buckets.length; i++) {
+        if (this.buckets[i] != undefined) {
+            count++
+        }
+    }
+    return count
   }
 }
 
@@ -77,4 +96,10 @@ console.log(test.get('alligator'));
 console.log(test.has('frog'));
 console.log(test.has('dog'));
 console.log(test.has('eagle'));
+// console.log(test.remove('frog'));
+// console.log(test.remove('jacket'));
+// console.log(test.remove('dog'));
+// console.log(test.remove('eagle'));
+console.log(test.length())
+console.log(test.buckets)
 // console.log(test.buckets)
