@@ -95,6 +95,16 @@ class HashMap {
     }
     return keysArray;
   }
+
+  values() {
+    let valuesArray = [];
+    for (let i = 0; i < this.buckets.length; i++) {
+      if (this.buckets[i] != undefined) {
+        valuesArray.push(this.buckets[i][1]);
+      }
+    }
+    return valuesArray;    
+  }
 }
 
 const test = new HashMap();
@@ -123,5 +133,6 @@ console.log(test.has('eagle'));
 console.log(test.length());
 // console.log(test.clear())
 console.log(test.keys());
+console.log(test.values());
 console.log(test.buckets);
 // console.log(test.buckets)
