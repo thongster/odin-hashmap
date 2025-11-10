@@ -17,9 +17,42 @@ class HashMap {
 
     return {hashCode, index};
   }
+
+  set(key, value) {
+    // set value at array index
+    this.buckets[this.hash(key).index] = value
+
+    // loop and check if number of undefined items in array is greater than capacity
+    // if it is, double the capacity
+    let count = 0;
+    for (let i = 0; i < this.capacity; i++) {
+        if (this.buckets[i]) {
+            console.log(this.buckets)
+            count++;
+            console.log(count)
+            if (count > this.load * this.capacity) {
+                this.buckets.length = this.capacity * 2
+            }
+        }
+    }    
+  }
+
+  get(key) {
+    
+  }
 }
 
 const test = new HashMap()
-console.log(test)
+test.set('apple', 'red')
+test.set('banana', 'yellow')
+test.set('carrot', 'orange')
+test.set('dog', 'brown') //
+test.set('elephant', 'gray')
+test.set('frog', 'green')
+test.set('grape', 'purple') //
+test.set('hat', 'black') //
+test.set('ice cream', 'white')
+test.set('jacket', 'blue')
+test.set('kite', 'pink')
+test.set('lion', 'golden') // 
 console.log(test.buckets)
-console.log(test.hash("why"))
