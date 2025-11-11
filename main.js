@@ -29,7 +29,6 @@ class HashMap {
     let count = 0;
     for (let i = 0; i < this.buckets.length; i++) {
         if (this.buckets[i]) {
-            console.log(this.buckets[i])
             count++
             if (this.buckets[i][1]) {
                 count++
@@ -37,9 +36,32 @@ class HashMap {
         }
     }
 
-    console.log(count)
+    // if count goes over load * capacity
+    // rehash everything with new capacity
     if (count > this.load * this.capacity) {
-        this.buckets.length = this.capacity * 2;
+        this.resize()
+    }
+  }
+
+  resize() {
+    this.capacity = this.capacity * 2; // double the capacity
+    const oldBuckets = this.buckets // save old buckets to loop over later
+    this.buckets = new Array(this.capacity) // create new array with new capacity
+
+    // loop through old buckets
+    for (const bucket of oldBuckets) {
+        // if bucket exists (not undefined)
+        if (bucket) {
+            // loop through each key value pair
+            for (const [key, value] of bucket) {
+                // rehash everything
+                if (this.buckets[this.hash(key).index] === undefined) {
+                    this.buckets[this.hash(key).index] = [[key, value]];
+                } else {
+                    this.buckets[this.hash(key).index].push([key, value])
+                }
+            }
+        }
     }
   }
 
