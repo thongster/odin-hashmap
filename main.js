@@ -145,8 +145,10 @@ class HashMap {
   values() {
     let valuesArray = [];
     for (let i = 0; i < this.buckets.length; i++) {
-      if (this.buckets[i] != undefined) {
-        valuesArray.push(this.buckets[i][1]);
+      if (this.buckets[i]) {
+        for (const [entryKey, entryValue] of this.buckets[i]) {
+            valuesArray.push(entryValue)
+        }
       }
     }
     return valuesArray;    
@@ -200,4 +202,5 @@ console.log(test.has('eagle'));
 console.log(test.length())
 // test.clear()
 console.log(test.keys())
+console.log(test.values())
 console.log(test.buckets)
