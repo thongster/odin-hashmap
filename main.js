@@ -99,11 +99,16 @@ class HashMap {
   remove(key) {
     // loop through and turn the key we are looking for into undefined
     for (let i = 0; i < this.buckets.length; i++) {
-      if (this.buckets[i] != undefined && this.buckets[i][0] == key) {
-        this.buckets[i] = undefined;
-        return true;
+      if (this.buckets[i]) {
+        for (const [entryKey, entryValue] of this.buckets[i]) {
+            if (key == entryKey) {
+                this.buckets[i].splice([entryKey, entryValue], 1)
+                return true
+            }
+        }
       }
     }
+
     return false;
   }
 
@@ -157,13 +162,7 @@ class HashMap {
 }
 
 
-// console.log(test.has('frog'));
-// console.log(test.has('dog'));
-// console.log(test.has('eagle'));
-// console.log(test.remove('frog'));
-// console.log(test.remove('jacket'));
-// console.log(test.remove('dog'));
-// console.log(test.remove('eagle'));
+
 // console.log(test.length());
 // console.log(test.clear())
 // console.log(test.keys());
@@ -192,5 +191,9 @@ console.log(test.get('alligator'));
 console.log(test.has('frog'));
 console.log(test.has('hat'));
 console.log(test.has('eagle'));
+// console.log(test.remove('frog'));
+// console.log(test.remove('jacket'));
+console.log(test.remove('dog'));
+// console.log(test.remove('eagle'));
 console.log(test.length())
 console.log(test.buckets)
