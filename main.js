@@ -131,6 +131,7 @@ class HashMap {
   }
 
   keys() {
+    // loop through buckets and add each key into new array
     let keysArray = [];
     for (let i = 0; i < this.buckets.length; i++) {
       if (this.buckets[i]) {
@@ -143,6 +144,7 @@ class HashMap {
   }
 
   values() {
+    // loop through buckets and add each value into new array
     let valuesArray = [];
     for (let i = 0; i < this.buckets.length; i++) {
       if (this.buckets[i]) {
@@ -157,8 +159,10 @@ class HashMap {
   entries() {
     let entriesArray = []
     for (let i = 0; i < this.buckets.length; i++) {
-      if (this.buckets[i] != undefined) {
-        entriesArray.push(this.buckets[i]);
+      if (this.buckets[i]) {
+        for (const [entryKey, entryValue] of this.buckets[i]) {
+            entriesArray.push([entryKey, entryValue])
+        }
       }
     }
     return entriesArray;    
@@ -203,4 +207,5 @@ console.log(test.length())
 // test.clear()
 console.log(test.keys())
 console.log(test.values())
+console.log(test.entries())
 console.log(test.buckets)
