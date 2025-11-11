@@ -69,9 +69,12 @@ class HashMap {
     // loop through this.buckets
     // if the hash exists and the key is the same, return value
     for (let i = 0; i < this.buckets.length; i++) {
-      if (this.buckets[i] != undefined && this.buckets[i][0] == key 
-        || this.buckets[i] != undefined && this.buckets[i][0] == key) {
-        return this.buckets[i][1];
+      if (this.buckets[i]) {
+        for (const [entryKey, entryValue] of this.buckets[i]) {
+            if (key == entryKey) {
+                return entryValue
+            }
+        }
       }
     }
     // else return null
@@ -148,22 +151,7 @@ class HashMap {
   }
 }
 
-// const test = new HashMap();
-// test.set('apple', 'red');
-// test.set('banana', 'yellow');
-// test.set('carrot', 'orange');
-// test.set('dog', 'brown'); //
-// test.set('elephant', 'gray');
-// test.set('frog', 'green');
-// test.set('grape', 'purple'); //
-// test.set('hat', 'black'); //
-// test.set('ice cream', 'white');
-// test.set('jacket', 'blue');
-// test.set('kite', 'pink');
-// test.set('lion', 'golden'); //
-// console.log(test.get('apple'));
-// console.log(test.get('ice cream'));
-// console.log(test.get('alligator'));
+
 // console.log(test.has('frog'));
 // console.log(test.has('dog'));
 // console.log(test.has('eagle'));
@@ -193,5 +181,8 @@ test.set('jacket', 'blue')
 test.set('kite', 'pink')
 test.set('lion', 'golden')
 test.set('moon', 'silver')
+console.log(test.get('apple'));
+console.log(test.get('lion'));
+console.log(test.get('alligator'));
 console.log(test.length())
 console.log(test.buckets)
