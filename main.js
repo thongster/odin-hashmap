@@ -102,7 +102,7 @@ class HashMap {
       if (this.buckets[i]) {
         for (const [entryKey, entryValue] of this.buckets[i]) {
             if (key == entryKey) {
-                this.buckets[i].splice([entryKey, entryValue], 1)
+                [this.buckets[i].splice([entryKey, entryValue], 1)]
                 return true
             }
         }
@@ -126,17 +126,17 @@ class HashMap {
   }
 
   clear() {
-    // turn all into undefined
-    for (let i = 0; i < this.buckets.length; i++) {
-      this.buckets[i] = undefined;
-    }
+    // remove everything
+      this.buckets.splice(0, this.buckets.length)
   }
 
   keys() {
     let keysArray = [];
     for (let i = 0; i < this.buckets.length; i++) {
-      if (this.buckets[i] != undefined) {
-        keysArray.push(this.buckets[i][0]);
+      if (this.buckets[i]) {
+        for (const [entryKey, entryValue] of this.buckets[i]) {
+            keysArray.push(entryKey)
+        }
       }
     }
     return keysArray;
@@ -186,7 +186,7 @@ test.set('ice cream', 'white')
 test.set('jacket', 'blue')
 test.set('kite', 'pink')
 test.set('lion', 'golden')
-// test.set('moon', 'silver')
+test.set('moon', 'silver')
 console.log(test.get('apple'));
 console.log(test.get('lion'));
 console.log(test.get('alligator'));
@@ -195,7 +195,9 @@ console.log(test.has('hat'));
 console.log(test.has('eagle'));
 // console.log(test.remove('frog'));
 // console.log(test.remove('jacket'));
-console.log(test.remove('dog'));
+// console.log(test.remove('dog'));
 // console.log(test.remove('eagle'));
 console.log(test.length())
+// test.clear()
+console.log(test.keys())
 console.log(test.buckets)
