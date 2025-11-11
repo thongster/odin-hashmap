@@ -66,7 +66,7 @@ class HashMap {
   }
 
   get(key) {
-    // loop through this.buckets
+    // loop through this.buckets, and each entry if multiple entries in same bucket
     // if the hash exists and the key is the same, return value
     for (let i = 0; i < this.buckets.length; i++) {
       if (this.buckets[i]) {
@@ -82,10 +82,15 @@ class HashMap {
   }
 
   has(key) {
-    // loop and return true when we find the key
+    // loop through this.buckets, and each entry if multiple entries in same bucket
+    // if the hash exists and the key is the same, return true
     for (let i = 0; i < this.buckets.length; i++) {
-      if (this.buckets[i] != undefined && this.buckets[i][0] == key) {
-        return true;
+      if (this.buckets[i]) {
+        for (const [entryKey, entryValue] of this.buckets[i]) {
+            if (key == entryKey) {
+                return true
+            }
+        }
       }
     }
     return false;
@@ -180,9 +185,12 @@ test.set('ice cream', 'white')
 test.set('jacket', 'blue')
 test.set('kite', 'pink')
 test.set('lion', 'golden')
-test.set('moon', 'silver')
+// test.set('moon', 'silver')
 console.log(test.get('apple'));
 console.log(test.get('lion'));
 console.log(test.get('alligator'));
+console.log(test.has('frog'));
+console.log(test.has('hat'));
+console.log(test.has('eagle'));
 console.log(test.length())
 console.log(test.buckets)
