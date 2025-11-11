@@ -116,8 +116,10 @@ class HashMap {
     // loop through and increase count if the hash exists
     let count = 0;
     for (let i = 0; i < this.buckets.length; i++) {
-      if (this.buckets[i] != undefined) {
-        count++;
+      if (this.buckets[i]) {
+        for (const [entryKey, entryValue] of this.buckets[i]) {
+            count++
+        }
       }
     }
     return count;
