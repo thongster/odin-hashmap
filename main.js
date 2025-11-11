@@ -19,27 +19,36 @@ class HashMap {
   }
 
   set(key, value) {
-    // set value at array index
-    this.buckets[this.hash(key).index] = [key, value];
+    
+    if (this.buckets[this.hash(key).index] === undefined) {
+        this.buckets[this.hash(key).index] = [[key, value]];
+    } else {
+        this.buckets[this.hash(key).index].push([key, value])
+    }
 
-    // loop and check if number of undefined items in array is greater than capacity
-    // if it is, double the capacity
     let count = 0;
-    for (let i = 0; i < this.capacity; i++) {
-      if (this.buckets[i]) {
-        count++;
-        if (count > this.load * this.capacity) {
-          this.buckets.length = this.capacity * 2;
+    for (let i = 0; i < this.buckets.length; i++) {
+        if (this.buckets[i]) {
+            console.log(this.buckets[i])
+            count++
+            if (this.buckets[i][1]) {
+                count++
+            }
         }
-      }
+    }
+
+    console.log(count)
+    if (count > this.load * this.capacity) {
+        this.buckets.length = this.capacity * 2;
     }
   }
 
   get(key) {
-    // loop through this,buckets
+    // loop through this.buckets
     // if the hash exists and the key is the same, return value
     for (let i = 0; i < this.buckets.length; i++) {
-      if (this.buckets[i] != undefined && this.buckets[i][0] == key) {
+      if (this.buckets[i] != undefined && this.buckets[i][0] == key 
+        || this.buckets[i] != undefined && this.buckets[i][0] == key) {
         return this.buckets[i][1];
       }
     }
@@ -149,3 +158,18 @@ class HashMap {
 // console.log(test.buckets)
 
 const test = new HashMap()
+test.set('apple', 'red')
+test.set('banana', 'yellow')
+test.set('carrot', 'orange')
+test.set('dog', 'brown')
+test.set('elephant', 'gray')
+test.set('frog', 'green')
+test.set('grape', 'purple')
+test.set('hat', 'black')
+test.set('ice cream', 'white')
+test.set('jacket', 'blue')
+test.set('kite', 'pink')
+test.set('lion', 'golden')
+test.set('moon', 'silver')
+console.log(test.length())
+console.log(test.buckets)
